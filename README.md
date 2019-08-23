@@ -21,6 +21,7 @@ One way to correct the violation of SRP is to decompose the class functionalitie
 An example to clarify this principle:
 Used in project:
 We have to change the email address of the user  in the application , first we have to check user have access to change the email address then change the email address.
+```
    public class UserSettingService
    {
         public void changeEmail(User user)
@@ -35,10 +36,13 @@ We have to change the email address of the user  in the application , first we h
           //Verify if the user is valid.
        }
   }
+  ```
+  
   
 All looks good, until you would want to reuse the checkAccess code at some other place OR you want to make changes to the way checkAccess is being done OR you want to make change to the way email changes are being approved. In all the later 2 cases you would end up changing the same class and in the first case you would have to use UserSettingService to check for access as well, which is unnecessary.
 
 The correct way to implement this is to decompose the UserSettingService into 2 classes one is to checkAccess , other one is to Change the email Addresses as explained below.
+```
      public class UserSettingService
      {
          public void changeEmail(User user)
@@ -58,4 +62,4 @@ The correct way to implement this is to decompose the UserSettingService into 2 
            //check the access.
           }
     }
-
+```
