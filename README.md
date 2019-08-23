@@ -233,3 +233,9 @@ class NonFlight extends Bird{
 }
 ```
 
+## Interface segregation Principle:
+
+
+## Dependency Inversion Principle:
+
+
