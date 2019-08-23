@@ -175,3 +175,61 @@ public class LoanApprovalHandler
 ```
 So to accommodate any type of loan validators we would just have create a subclass of Validator and then pass it to the approveLoan method. That way the class is CLOSED for modification but OPEN for extension.
 
+
+##	Liskov’s Substitution Principle:
+Methods that use references to the base classes must be able to use the objects of the derived classes without knowing it.
+In other words, the subtypes must be replaceable for the super type references without affecting the program execution.
+This principle is very closely related to open close principle (OCP), violation of LSP in turn violates the OCP. Let me explain:If the subtype is not replaceable for the supertype reference, then in order to support the subtype instances as well we go ahead and make changes to the existing code and add the support. This is a clear violation of OCP.
+
+```
+class Bird {
+     public void fly(){}
+     public void eat(){}
+}
+	
+class Crow extends Bird {
+		
+}
+	
+class Ostrich extends Bird{
+ fly(){
+	  throw new UnsupportedOperationException();
+	}
+}
+
+public BirdTest
+{
+	  public static void main(String[] args){
+	   List<Bird> birdList = new ArrayList<Bird>();
+	    birdList.add(new Bird());
+	    birdList.add(new Crow());
+	    birdList.add(new Ostrich());
+	    letTheBirdsFly ( birdList );
+	
+	  }
+	
+static void letTheBirdsFly ( List<Bird> birdList )
+    {
+	    for ( Bird b : birdList ) {
+	      b.fly();
+	    }
+    }
+}
+```
+What do you think would happen when this code is executed? As soon as an Ostrich instance is passed, it blows up!!! Here the sub type is not replaceable for the super type.
+In the above scenario we can factor out the fly feature into- Flight and NonFlight birds.
+```
+class Bird{
+	public void eat(){}
+}
+
+class FlightBird extends Bird{
+	public void fly(){
+	}
+}
+
+class NonFlight extends Bird{
+
+}
+```
+
