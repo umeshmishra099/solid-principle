@@ -235,7 +235,15 @@ class NonFlight extends Bird{
 
 ## Interface segregation Principle:
 
+Interface-segregation principle (ISP) states that no client should be forced to depend on methods it does not use. ISP splits interfaces that are very large into smaller and more specific ones so that clients will only have to know about the methods that are of interest to them.
 
 ## Dependency Inversion Principle:
+
+According to this principle the way of designing a class structure is to start from high level modules to the low level modules:
+High Level Classes --> Abstraction Layer --> Low Level Classes
+1) High-level modules should not depend on low-level modules. Both should depend on abstractions.
+2) Abstractions should not depend on details. Details should depend on abstractions.
+
+
 
 
